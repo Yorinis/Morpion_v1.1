@@ -1,0 +1,9 @@
+1) Créer le formulaire pour renseigner les deux joueurs qui vont partciper
+2) Mettre en session les deux joueurs
+    -> Renseigner le name et l'unité (X ou O)
+3) Créer le tableau du jeu (front)
+4) Créer le système du jeu
+    -> Créer un array avec l'emplacement joué et par qui
+    -> Créer un tableau comparatif avec les combinaisons gagnantes
+5) Créer le système de tour par tour
+    -> Créer une variable dynamique qui prendra pour chaque nouvelle case de jeu remplie une incrémentation qui fera switcher le joueur 1 et 2
