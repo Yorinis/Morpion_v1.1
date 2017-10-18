@@ -9,7 +9,6 @@
 class User
 {
     protected $name;
-    protected $unit;
 
     /**
      * @return mixed
