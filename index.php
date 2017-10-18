@@ -31,6 +31,7 @@ else
 {
     $player1->setName($_SESSION['player1']['name']);
     $player2->setName($_SESSION['player2']['name']);
+    $secure = true;
 }
 
 # On sécurise en vérifiant côté serveur si les 2 noms ont été remplis

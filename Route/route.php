@@ -14,7 +14,5 @@ if(isset($_POST['player1_name']) && isset($_POST['player2_name']))
     $_SESSION['player1']['unit'] = 1;
     $_SESSION['player2']['name'] = $_POST['player2_name'];
     $_SESSION['player2']['unit'] = 2;
-
-    $secure = true;
 }
 
