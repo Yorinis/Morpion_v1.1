@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61f89449-2316-40d5-886f-91cb7ad21ddf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Controller/Autoloader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Controller/MorpionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/User.php" afterPath="$PROJECT_DIR$/Controller/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Route/route.php" afterPath="$PROJECT_DIR$/Route/route.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/MorpionController.php" afterPath="$PROJECT_DIR$/Controller/MorpionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/View/Form.php" afterPath="$PROJECT_DIR$/View/Form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
     </list>
@@ -38,16 +35,16 @@
     </window>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57117116">
+    <splitter split-orientation="horizontal" split-proportion="0.49069068">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="16" column="116" lean-forward="false" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
+                <state relative-caret-position="437">
+                  <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
                   <folding>
-                    <marker date="1508587914583" expanded="true" signature="1956:2349" ph="..." />
+                    <marker date="1508588693435" expanded="true" signature="1979:2372" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -56,8 +53,8 @@
           <file leaf-file-name="route.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Route/route.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="621">
-                  <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -66,12 +63,9 @@
           <file leaf-file-name="Form.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/View/Form.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="251">
-                  <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-                  <folding>
-                    <marker date="1508587895086" expanded="true" signature="1030:1058" ph="..." />
-                    <marker date="1508587895086" expanded="true" signature="1308:1336" ph="..." />
-                  </folding>
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -93,8 +87,8 @@
           <file leaf-file-name="MorpionController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Controller/MorpionController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="736">
-                  <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+                <state relative-caret-position="529">
+                  <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -126,6 +120,9 @@
       <find>$player1-&gt;setName($_SESSION['player1']['name']);</find>
       <find>1</find>
       <find>autoload</find>
+      <find>$game</find>
+      <find>$game = new</find>
+      <find>$</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -150,11 +147,11 @@
         <option value="$PROJECT_DIR$/Controller/User.php" />
         <option value="$PROJECT_DIR$/Route/route.php" />
         <option value="$PROJECT_DIR$/Route/route.php" />
+        <option value="$PROJECT_DIR$/View/Form.php" />
+        <option value="$PROJECT_DIR$/View/Form.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/Controller/MorpionController.php" />
-        <option value="$PROJECT_DIR$/View/Form.php" />
-        <option value="$PROJECT_DIR$/View/Form.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -222,6 +219,11 @@
               <item name="Morpion_v1.1" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Route" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="Morpion_v1.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Morpion_v1.1" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="View" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -263,12 +265,12 @@
       <updated>1508353881032</updated>
       <workItem from="1508353882472" duration="15628000" />
       <workItem from="1508446585019" duration="1108000" />
-      <workItem from="1508579428461" duration="6969000" />
+      <workItem from="1508579428461" duration="7759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23705000" />
+    <option name="totallyTimeSpent" value="24495000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -311,7 +313,7 @@
         <state relative-caret-position="1587">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
-            <marker date="1508587914583" expanded="true" signature="1956:2349" ph="..." />
+            <marker date="1508588693435" expanded="true" signature="1979:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -336,10 +338,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding>
-            <marker date="1508587895086" expanded="true" signature="1030:1058" ph="..." />
-            <marker date="1508587895086" expanded="true" signature="1308:1336" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -364,7 +363,7 @@
         <state relative-caret-position="1472">
           <caret line="64" column="8" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
           <folding>
-            <marker date="1508587914583" expanded="true" signature="1956:2349" ph="..." />
+            <marker date="1508588693435" expanded="true" signature="1979:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -389,10 +388,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding>
-            <marker date="1508587895086" expanded="true" signature="1030:1058" ph="..." />
-            <marker date="1508587895086" expanded="true" signature="1308:1336" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -435,14 +431,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/Autoloader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -451,40 +439,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/MorpionController.php">
+    <entry file="file://$PROJECT_DIR$/Controller/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+        <state relative-caret-position="138">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Route/route.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/View/Form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="28" column="4" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding>
-            <marker date="1508587895086" expanded="true" signature="1030:1058" ph="..." />
-            <marker date="1508587895086" expanded="true" signature="1308:1336" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="16" column="116" lean-forward="false" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
+        <state relative-caret-position="437">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
           <folding>
-            <marker date="1508587914583" expanded="true" signature="1956:2349" ph="..." />
+            <marker date="1508588693435" expanded="true" signature="1979:2372" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/MorpionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

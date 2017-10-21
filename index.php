@@ -30,7 +30,7 @@ require 'View/Form.php';
 # Si la session est vide, on affiche le formulaire des nouveaux joueurs
 if (empty($_SESSION))
 {
-    echo viewFormNewPlayer();
+    $game->viewFormNewPlayer();
 }
 # Si la session existe on initialise tous les attributs avec la session
 else
@@ -59,7 +59,7 @@ if (isset($_SESSION['player1']['name']) || isset($_SESSION['player2']['name']))
 # On vérifie que toute la procédure avant l'affichage a bien été faite
 if ($secure)
 {
-    echo viewGameBoard();
+    $game->viewGameBoard();
 }
 if(isset($_GET['action']))
 {
@@ -67,7 +67,7 @@ if(isset($_GET['action']))
 
     if($action == "reset")
     {
-        
+        $game->resetGame();
     }
 }
 ################### DEBUGAGE ###############################################################
