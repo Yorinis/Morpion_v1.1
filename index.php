@@ -25,7 +25,6 @@ $player2 = new User(); #
 $game = new MorpionController();
 
 require 'Route/route.php';
-require 'View/Form.php';
 
 # Si la session est vide, on affiche le formulaire des nouveaux joueurs
 if (empty($_SESSION))
