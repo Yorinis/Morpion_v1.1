@@ -49,7 +49,7 @@ if (isset($_SESSION['player1']['name']) || isset($_SESSION['player2']['name']))
     {
         echo 'ERREUR : Vous devez saisir 2 noms <br />';
         echo '<a href="index.php" title="Retour">Retour</a>';
-        session_destroy();
+        $game->resetGame();
         die();
     }
 }

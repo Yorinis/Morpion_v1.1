@@ -39,9 +39,20 @@ if(isset($_GET['a']))
 {
     $action = $_GET['a'];
 
+    /**
+     * Reset la partie et les joueurs
+     */
     if ($action == "reset")
     {
         $game->resetGame();
+    }
+
+    /**
+     * Complete une case par le joueur en cours
+     */
+    if ($action == "case")
+    {
+
     }
 }
 
