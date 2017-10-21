@@ -1,22 +1,28 @@
-<link rel="stylesheet" href="View/css/style.css" />
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Jeu du Morpion</title>
+    <link rel="stylesheet" href="View/css/style.css" />
+</head>
+<body>
 <?php
-/**
- * Created by PhpStorm.
- * User: Admin
- * Date: 18/10/2017
- * Time: 21:11
- */
 session_start();
-$secure = false;
+
+require 'Controller/Autoloader.php';
+Autoloader::register();
+
 ################### CONFIG #################################################################
 
-require_once 'Controller/User.php';
+$secure = false; // Check l'état de la session, vérifie si les 2 noms des joueurs ont bien été enregistré en session
 
 # Initialise les deux joueurs
 ########################
 $player1 = new User(); #
 $player2 = new User(); #
 ########################
+
+$game = new MorpionController();
 
 require 'Route/route.php';
 require 'View/Form.php';
@@ -26,11 +32,14 @@ if (empty($_SESSION))
 {
     echo viewFormNewPlayer();
 }
-# Si la session existe on fait un setter des noms des 2 joueurs
+# Si la session existe on initialise tous les attributs avec la session
 else
 {
     $player1->setName($_SESSION['player1']['name']);
     $player2->setName($_SESSION['player2']['name']);
+    $game->setTabForward($_SESSION['tab_forward']);
+    $game->setCurrentPlayer($_SESSION['turn']['PlayerActive']);
+
     $secure = true;
 }
 
@@ -39,7 +48,7 @@ if (isset($_SESSION['player1']['name']) || isset($_SESSION['player2']['name']))
 {
     if (empty($player1->getName()) || empty($player2->getName()))
     {
-        echo 'Vous devez saisir 2 noms <br />';
+        echo 'ERREUR : Vous devez saisir 2 noms <br />';
         echo '<a href="index.php" title="Retour">Retour</a>';
         session_destroy();
         die();
@@ -52,22 +61,42 @@ if ($secure)
 {
     echo viewGameBoard();
 }
+if(isset($_GET['action']))
+{
+    $action = $_GET['action'];
 
+    if($action == "reset")
+    {
+        
+    }
+}
 ################### DEBUGAGE ###############################################################
 echo "<pre>";
 
 echo "<h3>DUMP des $ Players</h3>";
 
+echo " Nom joueur 1 :";
 var_dump($player1->getName());
-echo "<br />";
+echo "<br /> Nom joueur 2 :";
 var_dump($player2->getName());
+echo "<br /> Tableau de jeu :";
+var_dump($game->getTabForward());
+echo "<br /> Joueur actuel :";
+var_dump($game->getCurrentPlayer());
 
 echo "<h3>PRINT de la SESSION</h3>";
+if (!empty($_SESSION))
+{
+  print_r($_SESSION);
+}
 
-print_r($_SESSION);
+
 
 echo "</pre>";
 
+?>
+</body>
+</html>
 
 
 

@@ -26,9 +26,11 @@ function viewFormNewPlayer()
  */
 function viewGameBoard()
 {
+    $game = new MorpionController();
+
     $tab  = "<table border='1'>";
     $tab .= "<tr>";
-    $tab .= "<td><a href='index.php?case=a1' title='Choisir la case A1'>A1</a></td>";
+    $tab .= "<td><a href='index.php?case=a1&player=".$game->getCurrentPlayer()."' title='Choisir la case A1'>A1</a></td>";
     $tab .= "<td><a href='index.php?case=b1' title='Choisir la case B1'>B1</a></td>";
     $tab .= "<td><a href='index.php?case=c1' title='Choisir la case C1'>C1</a></td>";
     $tab .= "</tr>";
@@ -42,6 +44,8 @@ function viewGameBoard()
     $tab .= "<td><a href='index.php?case=c3' title='Choisir la case C3'>C3</a></td>";
     $tab .= "</tr>";
     $tab .= "</table>";
+
+    $tab .= "<a href='index.php?a=reset' title='Recommencer une nouvelle partie'>Recommencer</a>";
 
     return $tab;
 }
