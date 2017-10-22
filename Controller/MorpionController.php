@@ -68,7 +68,7 @@ class MorpionController
             }
             if($value > 0)
             {
-                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$_SESSION['turn']['playerActiveUnit']."</a></td>";
+                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$value."</a></td>";
             }
             else
             {
@@ -96,21 +96,21 @@ class MorpionController
                 $_SESSION['turn']['turnCount']++;
             }
 
-            if($_SESSION['turn']['playerActiveUnit'] == $_SESSION['player']['player1']['unit'])
+            if($_SESSION['turn']['playerActive'] == $_SESSION['player']['player2']['name'])
             {
                 echo "JE SUIS DANS LE IF :: PLAYER 1";
 
-                $this->currentPlayer = $_SESSION['player']['player1']['name'];
-                $this->currentPlayerUnit = $_SESSION['player']['player1']['unit'];
-                $this->playercase = $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+                $_SESSION['turn']['playerActive'] = $_SESSION['player']['player1']['name'];
+                $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player1']['unit'];
+                $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
 
             }
             else
             {
                 echo "JE SUIS DANS LE ELSE :: PLAYER 2";
-                $this->currentPlayer  = $_SESSION['player']['player2']['name'];
-                $this->currentPlayerUnit  = $_SESSION['player']['player2']['unit'];
-                $this->playercase = $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+                $_SESSION['turn']['playerActive'] = $_SESSION['player']['player2']['name'];
+                $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player2']['unit'];
+                $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
             }
         }
         $view  = "<table border='1'>";
