@@ -8,20 +8,31 @@
 
 class MorpionController
 {
-    protected $player1;
-    protected $player2;
+    protected $name;
     protected $currentPlayer;
+    protected $currentPlayerUnit;
+    protected $playercase;
     protected $turn;
     protected $tab_forward;
 
-    private function manageCase()
-    {
-                     
-    }
-
     private function manageTurn()
     {
+        foreach ($_SESSION['tab_forward'] as $case => $value)
+        {
+            if($value > 0)
+            {
+                $_SESSION['turn']['turnCount']++;
 
+                if($_SESSION['turn']['playerActiveUnit'] == 1)
+                {
+                    $_SESSION['turn']['playerActiveUnit'] = 2;
+                }
+                else
+                {
+                    $_SESSION['turn']['playerActiveUnit'] = 1;
+                }
+            }
+        }
     }
 
     ######## VIEW ################################################
@@ -46,24 +57,71 @@ class MorpionController
     {
         $tab  = "<table border='1'>";
         $tab .= "<tr>";
-        $tab .= "<td><a href='index.php?case=a1&player=".$this->getCurrentPlayer()."' title='Choisir la case A1'>A1</a></td>";
-        $tab .= "<td><a href='index.php?case=b1&player=".$this->getCurrentPlayer()."' title='Choisir la case B1'>B1</a></td>";
-        $tab .= "<td><a href='index.php?case=c1&player=".$this->getCurrentPlayer()."' title='Choisir la case C1'>C1</a></td>";
-        $tab .= "</tr>";
-        $tab .= "<tr>";
-        $tab .= "<td><a href='index.php?case=a2&player=".$this->getCurrentPlayer()."' title='Choisir la case A2'>A2</a></td>";
-        $tab .= "<td><a href='index.php?case=b2&player=".$this->getCurrentPlayer()."' title='Choisir la case B2'>B2</a></td>";
-        $tab .= "<td><a href='index.php?case=c2&player=".$this->getCurrentPlayer()."' title='Choisir la case C2'>C2</a></td>";
-        $tab .= "<tr>";
-        $tab .= "<td><a href='index.php?case=a3&player=".$this->getCurrentPlayer()."' title='Choisir la case A3'>A3</a></td>";
-        $tab .= "<td><a href='index.php?case=b3&player=".$this->getCurrentPlayer()."' title='Choisir la case B3'>B3</a></td>";
-        $tab .= "<td><a href='index.php?case=c3&player=".$this->getCurrentPlayer()."' title='Choisir la case C3'>C3</a></td>";
-        $tab .= "</tr>";
+        $count = 0;
+        foreach ($_SESSION['tab_forward'] as $case => $value)
+        {
+            $goback = null;
+            $count++;
+            if ($count == 3 || $count == 6 || $count == 9)
+            {
+                $goback =  "</tr></tr>";
+            }
+            if($value > 0)
+            {
+                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$_SESSION['turn']['playerActiveUnit']."</a></td>";
+            }
+            else
+            {
+                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$case."</a></td>";
+            }
+
+            $tab .= $goback;
+
+        }
+
         $tab .= "</table>";
 
         $tab .= "<a href='index.php?a=reset' title='Recommencer une nouvelle partie'>Recommencer</a>";
 
         echo $tab;
+    }
+
+    public function viewScore()
+    {
+        if(isset($_GET['case']))
+        {
+            # Permet d'incrémenté les tours lorsque qu'une case est co
+            if($_SESSION['tab_forward'][$_GET['case']] == 0)
+            {
+                $_SESSION['turn']['turnCount']++;
+            }
+
+            if($_SESSION['turn']['playerActiveUnit'] == $_SESSION['player']['player1']['unit'])
+            {
+                echo "JE SUIS DANS LE IF :: PLAYER 1";
+
+                $this->currentPlayer = $_SESSION['player']['player1']['name'];
+                $this->currentPlayerUnit = $_SESSION['player']['player1']['unit'];
+                $this->playercase = $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+
+            }
+            else
+            {
+                echo "JE SUIS DANS LE ELSE :: PLAYER 2";
+                $this->currentPlayer  = $_SESSION['player']['player2']['name'];
+                $this->currentPlayerUnit  = $_SESSION['player']['player2']['unit'];
+                $this->playercase = $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+            }
+        }
+        $view  = "<table border='1'>";
+        $view .= "<tr><td>";
+        $view .= "Joueur 1 : ". $_SESSION['player']['player1']['name']. "<br />";
+        $view .= "Joueur 2 : ". $_SESSION['player']['player2']['name']. "<br /><hr />";
+        $view .= "Tour de  : ". $_SESSION['turn']['playerActive']. "<br />";
+        $view .= "Tour : ". $_SESSION['turn']['turnCount']. "<br />";
+        $view .= "</td></tr></table>";
+
+        echo $view;
     }
 
     /**
@@ -108,7 +166,45 @@ class MorpionController
     {
         $this->tab_forward = $tab_forward;
     }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTurn()
+    {
+        return $this->turn;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrentPlayerUnit()
+    {
+        return $this->currentPlayerUnit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayercase()
+    {
+        return $this->playercase;
+    }
 
 
 

@@ -10,10 +10,16 @@
 # Si oui, on passe le post dans la session et on initialise les paramètres de base du jeu
 if(isset($_POST['player1_name']) && isset($_POST['player2_name']))
 {
-    $_SESSION['player1']['name'] = $_POST['player1_name'];
-    $_SESSION['player1']['unit'] = 1;
-    $_SESSION['player2']['name'] = $_POST['player2_name'];
-    $_SESSION['player2']['unit'] = 2;
+    $_SESSION['player'] = array(
+        "player1" => [
+            "name" => $_POST['player1_name'],
+            "unit" => 1
+        ],
+        "player2" => [
+            "name" => $_POST['player2_name'],
+            "unit" => 2
+        ]
+    );
 
     # On initialise l'array du jeu
     $_SESSION['tab_forward'] = array(
@@ -29,30 +35,41 @@ if(isset($_POST['player1_name']) && isset($_POST['player2_name']))
     );
 
     $_SESSION['turn'] = array(
-        "TurnNumber" => 0,
-        "PlayerActive" => $_SESSION['player1']['name']
+        "playerActive" => $_SESSION['player']['player1']['name'],
+        "playerActiveUnit" => $_SESSION['player']['player1']['unit'],
+        "turnCount" => 1,
     );
 }
 
 # va vérifier si une action existe (a = action)
 if(isset($_GET['a']))
 {
-    $action = $_GET['a'];
+    $getaction = $_GET['a'];
 
     /**
      * Reset la partie et les joueurs
      */
-    if ($action == "reset")
+    if ($getaction == "reset")
     {
         $game->resetGame();
     }
+}
 
-    /**
-     * Complete une case par le joueur en cours
-     */
-    if ($action == "case")
+if(isset($_GET['case']))
+{
+    $getcase = $_GET['case'];
+    $getplayer = $_GET['player'];
+
+
+    if($_SESSION['tab_forward'][$getcase] > 0)
     {
-
+        echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
     }
+    else
+    {
+        $_SESSION['tab_forward'][$getcase] = $game->getCurrentPlayerUnit();
+    }
+
+
 }
 

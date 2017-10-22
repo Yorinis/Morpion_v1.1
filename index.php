@@ -3,12 +3,15 @@
 <head>
     <meta charset="utf-8">
     <title>Jeu du Morpion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="View/css/style.css" />
+    <script type="text/javascript" src="jquery-3.2.1.js"> </script>
+    <script type="text/javascript" src="message.js"> </script>
 </head>
 <body>
 <?php
-session_start();
 
+session_start();
 require 'Controller/Autoloader.php';
 Autoloader::register();
 
@@ -18,8 +21,8 @@ $secure = false; // Check l'état de la session, vérifie si les 2 noms des joue
 
 # Initialise les deux joueurs
 ########################
-$player1 = new User(); #
-$player2 = new User(); #
+$player1 = new MorpionController(); #
+$player2 = new MorpionController(); #
 ########################
 
 $game = new MorpionController();
@@ -34,16 +37,13 @@ if (empty($_SESSION))
 # Si la session existe on initialise tous les attributs avec la session
 else
 {
-    $player1->setName($_SESSION['player1']['name']);
-    $player2->setName($_SESSION['player2']['name']);
-    $game->setTabForward($_SESSION['tab_forward']);
-    $game->setCurrentPlayer($_SESSION['turn']['PlayerActive']);
-
+    $player1->setName($_SESSION['player']['player1']['name']);
+    $player2->setName($_SESSION['player']['player2']['name']);
     $secure = true;
 }
 
 # On sécurise en vérifiant côté serveur si les 2 noms ont été remplis
-if (isset($_SESSION['player1']['name']) || isset($_SESSION['player2']['name']))
+if (isset($_SESSION['player']['player1']['name']) || isset($_SESSION['player']['player2']['name']))
 {
     if (empty($player1->getName()) || empty($player2->getName()))
     {
@@ -58,7 +58,21 @@ if (isset($_SESSION['player1']['name']) || isset($_SESSION['player2']['name']))
 # On vérifie que toute la procédure avant l'affichage a bien été faite
 if ($secure)
 {
-    $game->viewGameBoard();
+    ?>
+   <div class="container">
+       <div class="row">
+           <div class="col-lg-4">
+               <?= $game->viewScore(); ?>
+
+           </div>
+           <div class="col-lg-8">
+               <?= $game->viewGameBoard(); ?>
+           </div>
+       </div>
+   </div>
+    <?php
+
+
 }
 if(isset($_GET['action']))
 {
@@ -72,24 +86,16 @@ if(isset($_GET['action']))
 ################### DEBUGAGE ###############################################################
 echo "<pre>";
 
-echo "<h3>DUMP des $ Players</h3>";
+echo "<h3>PRINT_R SESSION</h3>";
 
-echo " Nom joueur 1 :";
-var_dump($player1->getName());
-echo "<br /> Nom joueur 2 :";
-var_dump($player2->getName());
-echo "<br /> Tableau de jeu :";
-var_dump($game->getTabForward());
-echo "<br /> Joueur actuel :";
-var_dump($game->getCurrentPlayer());
+print_r($_SESSION['tab_forward']). "<br />";
+print_r($_SESSION['turn']['playerActive']). "<br />";
+print_r($_SESSION['turn']['playerActiveUnit']). "<br />";
 
-echo "<h3>PRINT de la SESSION</h3>";
-if (!empty($_SESSION))
-{
-  print_r($_SESSION);
-}
+echo "<h3>VAR_DUMP POO</h3>";
 
-
+var_dump($game->getCurrentPlayer()). "<br />";
+var_dump($game->getCurrentPlayerUnit()). "<br />";
 
 echo "</pre>";
 
