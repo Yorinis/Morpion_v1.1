@@ -98,7 +98,6 @@ var_dump($game->getCurrentPlayer()). "<br />";
 var_dump($game->getCurrentPlayerUnit()). "<br />";
 
 echo "</pre>";
-
 ?>
 </body>
 </html>

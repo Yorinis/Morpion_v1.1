@@ -13,11 +13,13 @@ if(isset($_POST['player1_name']) && isset($_POST['player2_name']))
     $_SESSION['player'] = array(
         "player1" => [
             "name" => $_POST['player1_name'],
-            "unit" => 1
+            "unit" => 1,
+            "img"  => "cross.png"
         ],
         "player2" => [
             "name" => $_POST['player2_name'],
-            "unit" => 2
+            "unit" => 2,
+            "img"  => "circle.png"
         ]
     );
 
@@ -54,22 +56,3 @@ if(isset($_GET['a']))
         $game->resetGame();
     }
 }
-
-if(isset($_GET['case']))
-{
-    $getcase = $_GET['case'];
-    $getplayer = $_GET['player'];
-
-
-    if($_SESSION['tab_forward'][$getcase] > 0)
-    {
-        echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
-    }
-    else
-    {
-        $_SESSION['tab_forward'][$getcase] = $game->getCurrentPlayerUnit();
-    }
-
-
-}
-

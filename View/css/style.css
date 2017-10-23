@@ -3,3 +3,9 @@ tr, td
     border: 1px solid #000;
     padding: 100px;
 }
+
+img
+{
+    max-width:10px;
+    height:auto;
+}

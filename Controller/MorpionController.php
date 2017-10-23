@@ -68,7 +68,15 @@ class MorpionController
             }
             if($value > 0)
             {
-                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$value."</a></td>";
+                if($value == 1)
+                {
+                    $img = "<img src='View/img/".$_SESSION['player']['player1']['img']."' alt='Croix'>";
+                }
+                else
+                {
+                    $img = "<img src='View/img/".$_SESSION['player']['player2']['img']."' alt='Cerlce'>";
+                }
+                $tab .= "<td><a href='index.php?case=".$case."&player=".$_SESSION['turn']['playerActive']."'>".$img."</a></td>";
             }
             else
             {
@@ -102,7 +110,15 @@ class MorpionController
 
                 $_SESSION['turn']['playerActive'] = $_SESSION['player']['player1']['name'];
                 $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player1']['unit'];
-                $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+                if($_SESSION['tab_forward'][$_GET['case']] > 0)
+                {
+                    echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
+                }
+                else
+                {
+                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+                }
+
 
             }
             else
@@ -110,7 +126,14 @@ class MorpionController
                 echo "JE SUIS DANS LE ELSE :: PLAYER 2";
                 $_SESSION['turn']['playerActive'] = $_SESSION['player']['player2']['name'];
                 $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player2']['unit'];
-                $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+                if($_SESSION['tab_forward'][$_GET['case']] > 0)
+                {
+                    echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
+                }
+                else
+                {
+                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+                }
             }
         }
         $view  = "<table border='1'>";
