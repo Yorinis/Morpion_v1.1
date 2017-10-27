@@ -1,0 +1,31 @@
+1) Passer POST dans setter
+
+$player1->setName($_POST('username1');
+
+2) c'est l'objet qui doit être passé en SESSION avec serialize et non les attributs dans la Class
+
+3) Pour utiliser les attributs de la classe A vers la B, possibilité de faire soit :
+	-> getter (getName)
+	-> passer l'attribut de la classe A en public
+
+4) l'objet n'intéragira JAMAIS avec la $_SESSION, en d'autres termes, pas de $_SESSION dans une Class
+
+4.bis) Toujours passer par des getters et setters. Si un traitement doit être fait (sur le name par exemple), celui-ci
+sera fait dans le setter
+
+EXEMPLE:
+(quelque chose comme ça)
+
+public function setName($name)
+{
+    $this->name= $name
+
+    if{
+      ($this->name != "toto")
+      return false
+    }
+    else
+    {
+	return $this->name 
+    } 
+}
