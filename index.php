@@ -20,10 +20,10 @@ Autoloader::register();
 $secure = false; // Check l'état de la session, vérifie si les 2 noms des joueurs ont bien été enregistré en session
 
 # Initialise les deux joueurs
-########################
-$player1 = new MorpionController(); #
-$player2 = new MorpionController(); #
-########################
+#########################
+$player1 = new Player(); #
+$player2 = new Player(); #
+#########################
 
 $game = new MorpionController();
 
@@ -39,6 +39,7 @@ else
 {
     $player1->setName($_SESSION['player']['player1']['name']);
     $player2->setName($_SESSION['player']['player2']['name']);
+
     $secure = true;
 }
 
@@ -62,7 +63,7 @@ if ($secure)
    <div class="container">
        <div class="row">
            <div class="col-lg-4">
-               <?= $game->viewScore(); ?>
+               <?= $game->manageTurn(); ?>
 
            </div>
            <div class="col-lg-8">
@@ -88,14 +89,15 @@ echo "<pre>";
 
 echo "<h3>PRINT_R SESSION</h3>";
 
-print_r($_SESSION['tab_forward']). "<br />";
-print_r($_SESSION['turn']['playerActive']). "<br />";
-print_r($_SESSION['turn']['playerActiveUnit']). "<br />";
-
-echo "<h3>VAR_DUMP POO</h3>";
-
-var_dump($game->getCurrentPlayer()). "<br />";
-var_dump($game->getCurrentPlayerUnit()). "<br />";
+//print_r($_SESSION['tab_forward']). "<br />";
+//print_r($_SESSION['turn']['playerActive']). "<br />";
+//print_r($_SESSION['turn']['playerActiveUnit']). "<br />";
+//
+//echo "<h3>VAR_DUMP POO</h3>";
+//
+//var_dump($game->getCurrentPlayer()). "<br />";
+//var_dump($game->getCurrentPlayerUnit()). "<br />";
+print_r($_SESSION);
 
 echo "</pre>";
 ?>

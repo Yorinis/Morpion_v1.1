@@ -40,6 +40,7 @@ if(isset($_POST['player1_name']) && isset($_POST['player2_name']))
         "playerActive" => $_SESSION['player']['player1']['name'],
         "playerActiveUnit" => $_SESSION['player']['player1']['unit'],
         "turnCount" => 1,
+        "checkTurn" => true
     );
 }
 

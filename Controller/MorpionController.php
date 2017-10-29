@@ -8,47 +8,64 @@
 
 class MorpionController
 {
-    protected $name;
+    protected $player1;
+    protected $player2;
     protected $currentPlayer;
     protected $currentPlayerUnit;
-    protected $playercase;
     protected $turn;
     protected $tab_forward;
+    protected $winCondition;
+    protected $checkTurn;
 
-    private function manageTurn()
+    public function hydrateTurn()
     {
-        foreach ($_SESSION['tab_forward'] as $case => $value)
-        {
-            if($value > 0)
-            {
-                $_SESSION['turn']['turnCount']++;
-
-                if($_SESSION['turn']['playerActiveUnit'] == 1)
-                {
-                    $_SESSION['turn']['playerActiveUnit'] = 2;
-                }
-                else
-                {
-                    $_SESSION['turn']['playerActiveUnit'] = 1;
-                }
-            }
-        }
+        $this->currentPlayer = $_SESSION['turn']['playerActive'];
+        $this->currentPlayerUnit = $_SESSION['turn']['playerActiveUnit'];
+        $this->turn = $_SESSION['turn']['turnCount'];
+        $this->checkTurn = $_SESSION['turn']['checkTurn'];
+        $this->tab_forward = $_SESSION['tab_forward'];
     }
+
+    public function hydratePlayer1()
+    {
+
+    }
+
+    public function hydratePlayer2()
+    {
+
+    }
+
+
+
+//    private function manageTurn()
+//    {
+//        foreach ($this->tab_forward as $case => $value)
+//        {
+//            if($this->turn == 1)
+//            {
+//                $this->currentPlayerUnit = $_SESSION['player']['player1']['unit'];
+//            }
+//            else
+//            {
+//                if($this->currentPlayerUnit == 1)
+//                {
+//                    $this->currentPlayerUnit = 2;
+//                    //$this->turn++;
+//                }
+//                else
+//                {
+//                    $this->currentPlayerUnit = 1;
+//                    $this->turn++;
+//                }
+//            }
+//
+//        }
+//    }
 
     ######## VIEW ################################################
 
-    /**
-     * Affichage du formulaire nouveaux joueurs
-     */
-    public function viewFormNewPlayer()
-    {
-        $form  = "<form action='index.php' method='post'>";
-        $form .= "<input type='text' name='player1_name' placeholder='Joueur 1' required />";
-        $form .= "<input type='text' name='player2_name' placeholder='Joueur 2' required />";
-        $form .= "<input type='submit' value='Jouer !' />";
 
-        echo $form;
-    }
 
     /**
      * Affichage du tableau de jeu
@@ -94,45 +111,45 @@ class MorpionController
         echo $tab;
     }
 
-    public function viewScore()
+    public function manageTurn()
     {
         if(isset($_GET['case']))
         {
-            # Permet d'incrémenté les tours lorsque qu'une case est co
-            if($_SESSION['tab_forward'][$_GET['case']] == 0)
-            {
-                $_SESSION['turn']['turnCount']++;
-            }
+            # Permet d'incrémenté les tours lorsque qu'une case est cochée
 
-            if($_SESSION['turn']['playerActive'] == $_SESSION['player']['player2']['name'])
+            if($_SESSION['turn']['playerActive'] == $_SESSION['player']['player1']['name'])
             {
-                echo "JE SUIS DANS LE IF :: PLAYER 1";
+                echo "JE SUIS DANS LE IF :: PLAYER 2";
 
-                $_SESSION['turn']['playerActive'] = $_SESSION['player']['player1']['name'];
-                $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player1']['unit'];
+
                 if($_SESSION['tab_forward'][$_GET['case']] > 0)
                 {
+                    $this->checkTurn = false;
                     echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
                 }
                 else
                 {
-                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+                    $_SESSION['turn']['playerActive'] = $_SESSION['player']['player2']['name'];
+                    $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player2']['unit'];
+                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+                    $_SESSION['turn']['turnCount']++;
                 }
-
-
             }
             else
             {
-                echo "JE SUIS DANS LE ELSE :: PLAYER 2";
-                $_SESSION['turn']['playerActive'] = $_SESSION['player']['player2']['name'];
-                $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player2']['unit'];
+                echo "JE SUIS DANS LE ELSE :: PLAYER 1";
+
                 if($_SESSION['tab_forward'][$_GET['case']] > 0)
                 {
+                    $this->checkTurn = false;
                     echo '<script type="text/javascript">window.alert("Cette case a déjà été jouée !");</script>';
                 }
                 else
                 {
-                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player2']['unit'];
+                    $_SESSION['turn']['playerActive'] = $_SESSION['player']['player1']['name'];
+                    $_SESSION['turn']['playerActiveUnit'] = $_SESSION['player']['player1']['unit'];
+                    $_SESSION['tab_forward'][$_GET['case']] = $_SESSION['player']['player1']['unit'];
+                    $_SESSION['turn']['turnCount']++;
                 }
             }
         }
@@ -146,7 +163,85 @@ class MorpionController
 
         echo $view;
     }
+    /**
+     * Affichage du formulaire nouveaux joueurs
+     */
+    public function viewFormNewPlayer()
+    {
+        $form = "<form action='index.php' method='post'>";
+        $form .= "<input type='text' name='player1_name' placeholder='Joueur 1' required />";
+        $form .= "<input type='text' name='player2_name' placeholder='Joueur 2' required />";
+        $form .= "<input type='submit' value='Jouer !' />";
 
+        echo $form;
+    }
+
+    public function calculResult()
+    {
+        $this->winCondition = array(
+            "comb1" =>
+                [
+                    "a1" => $_SESSION['tab_forward']['a1'],
+                    "a2" => $_SESSION['tab_forward']['a2'],
+                    "a3" => $_SESSION['tab_forward']['a3']
+                ],
+            "comb2" =>
+                [
+                    "b1" => $_SESSION['tab_forward']['b1'],
+                    "b2" => $_SESSION['tab_forward']['b2'],
+                    "b3" => $_SESSION['tab_forward']['b3']
+                ],
+            "comb3" =>
+                [
+                    "c1" => $_SESSION['tab_forward']['c1'],
+                    "c2" => $_SESSION['tab_forward']['c2'],
+                    "c3" => $_SESSION['tab_forward']['c3']
+                ],
+            "comb4" =>
+                [
+                    "a1" => $_SESSION['tab_forward']['a1'],
+                    "b1" => $_SESSION['tab_forward']['b1'],
+                    "c1" => $_SESSION['tab_forward']['c1']
+                ],
+            "comb5" =>
+                [
+                    "a2" => $_SESSION['tab_forward']['a2'],
+                    "b2" => $_SESSION['tab_forward']['b2'],
+                    "c2" => $_SESSION['tab_forward']['c2']
+                ],
+            "comb6" =>
+                [
+                    "a3" => $_SESSION['tab_forward']['a3'],
+                    "b3" => $_SESSION['tab_forward']['b3'],
+                    "c3" => $_SESSION['tab_forward']['c3']
+                ],
+            "comb7" =>
+                [
+                    "a1" => $_SESSION['tab_forward']['a1'],
+                    "b2" => $_SESSION['tab_forward']['b2'],
+                    "c3" => $_SESSION['tab_forward']['c3']
+                ],
+            "comb8" =>
+                [
+                    "a3" => $_SESSION['tab_forward']['a3'],
+                    "b2" => $_SESSION['tab_forward']['b2'],
+                    "c1" => $_SESSION['tab_forward']['c1']
+                ],
+        );
+
+        foreach ($this->winCondition as $comb => $combNum)
+        {
+            foreach ($combNum as $case => $unit)
+            {
+                if($comb == 1)
+                {
+                    echo "MATCH !!!!!";
+                }
+            }
+        }
+
+        return $this->winCondition;
+    }
     /**
      * Permet de reset la SESSION
      */
@@ -188,21 +283,6 @@ class MorpionController
     public function setTabForward($tab_forward)
     {
         $this->tab_forward = $tab_forward;
-    }
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     }
 
     /**
